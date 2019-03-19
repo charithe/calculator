@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1beta7
+kind: Config
+build:
+  artifacts:
+    - image: charithe/calculator
+  local: {}
+  tagPolicy:
+    gitCommit: {}
+deploy:
+  helm:
+    releases:
+      - name: calculator
+        chartPath: deploy/calculator
+        values:
+          image.repository: charithe/calculator
+

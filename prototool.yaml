@@ -1,0 +1,12 @@
+protoc:
+  version: 3.7.0
+lint:
+  group: google
+generate:
+  go_options: 
+    import_path: github.com/charithe/calculator
+  plugins:
+    - name: gogoslick
+      type: gogo
+      flags: plugins=grpc
+      output: .

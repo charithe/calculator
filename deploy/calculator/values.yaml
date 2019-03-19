@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: charithe/calculator
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+
+resources: 
+  limits:
+    cpu: 0.3
+    memory: 64Mi
+  requests:
+    cpu: 0.1
+    memory: 32Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package com.github.charithe.calculator.v1;
+
+option go_package = "v1pb";
+
+enum Operator {
+  UNDEFINED = 0;
+  ADD = 1;
+  SUBTRACT = 2;
+  MULTIPLY = 3;
+  DIVIDE = 4;
+}
+
+message Operand {
+  double value = 1;
+}
+
+message Token {
+  oneof token {
+    Operand operand = 1;
+    Operator operator = 2;
+  }
+}
+
+message EvaluateStreamRequest {
+  Token token = 1;
+}
+
+message EvaluateStreamResponse {
+  double result = 1;
+}
+
+message EvaluateBatchRequest {
+  repeated Token tokens = 1;
+}
+
+message EvaluateBatchResponse {
+  double result = 1;
+}
+
+service Calculator {
+  rpc EvaluateStream(stream EvaluateStreamRequest) returns (EvaluateStreamResponse);
+  rpc EvaluateBatch(EvaluateBatchRequest) returns (EvaluateBatchResponse);
+}
